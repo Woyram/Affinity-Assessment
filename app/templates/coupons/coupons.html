@@ -1,0 +1,128 @@
+{% extends "base/base.html" %}
+{% block username %} {{ userdata["firstname"].capitalize() }} {{ userdata["lastname"].capitalize() }} {% endblock username %}
+{% block useremail %} {{ userdata["email"] }} {% endblock useremail %}
+{% block sessionname %} - {{ userdata["username"].capitalize() }} {% endblock sessionname %}
+{% block screenname %} {{ menu_item }} {% endblock screenname %}
+
+{% block body %}
+
+<div class="card mb-5 mb-xl-8">
+    <div class="card-header border-0 pt-5">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bold fs-3 mb-1">Coupons</span>
+        </h3>
+        <div class="d-flex align-items-center position-relative my-1">
+        </div>
+        <button type="button" class="btn btn-light-primary me-3" onclick="generateCoupons();" data-bs-toggle="modal"
+                data-bs-target="#uploadDelegates">
+                        <span class="svg-icon svg-icon-2">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1"
+                                      transform="rotate(-90 11.364 20.364)" fill="currentColor"/>
+                                <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="currentColor"/>
+                            </svg>
+                        </span>
+            Generate Coupons
+        </button>
+    </div>
+    <div class="card-body py-3">
+        <div class="table-responsive">
+            <table id="uploadsTable" class="table align-middle gs-0 gy-4">
+                <thead>
+                <tr class="fw-bold text-muted bg-light">
+                    <th class="ps-4 min-w-100px rounded-start">File Name</th>
+                    <th class="min-w-120px">Upload Date</th>
+                    <th class="min-w-120px">Uploaded By</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for upload in uploads %}
+                <tr>
+                    <td><a style="cursor: pointer;" onclick="get_coupons('{{ upload['upload_id'] }}');"><strong>{{
+                        upload["file_name"] }}</strong></a></td>
+                    <td>{{ upload["upload_date"] | datetimeformat }}</td>
+                    <td>{{ upload["uploaded_by"] }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--Upload Costumers Document Modal Start-->
+<div class="modal fade" id="uploadCustomers" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <div class="modal-content">
+            <form class="form" action="none" id="kt_modal_upload_form">
+                <div class="modal-header">
+                    <h2 class="fw-bold">Upload Customer File</h2>
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
+                        <span class="svg-icon svg-icon-1">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+                                      transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)"
+                                      fill="currentColor"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <div class="modal-body pt-10 pb-15 px-lg-17">
+                    <div class="form-group">
+                        <div class="dropzone dropzone-queue mb-2" id="kt_modal_upload_dropzone">
+                            <div class="dropzone-panel mb-4">
+                                <a class="dropzone-select btn btn-sm btn-primary me-2">Attach files</a>
+                                <a class="dropzone-upload btn btn-sm btn-light-primary me-2">Upload All</a>
+                                <a class="dropzone-remove-all btn btn-sm btn-light-primary">Remove All</a>
+                            </div>
+                            <div class="dropzone-items wm-200px">
+                                <div class="dropzone-item p-5" style="display:none">
+                                    <div class="dropzone-file">
+                                        <div class="dropzone-filename text-dark" title="some_image_file_name.jpg">
+                                            <span data-dz-name="">some_image_file_name.jpg</span>
+                                            <strong>(
+                                                <span data-dz-size="">340kb</span>)</strong>
+                                        </div>
+                                        <div class="dropzone-error mt-0" data-dz-errormessage=""></div>
+                                    </div>
+                                    <div class="dropzone-progress">
+                                        <div class="progress bg-light-primary">
+                                            <div class="progress-bar bg-primary" role="progressbar" aria-valuemin="0"
+                                                 aria-valuemax="100" aria-valuenow="0" data-dz-uploadprogress=""></div>
+                                        </div>
+                                    </div>
+                                    <div class="dropzone-toolbar">
+                                        <span class="dropzone-start">
+                                            <i class="bi bi-play-fill fs-3"></i>
+                                        </span>
+                                        <span class="dropzone-cancel" data-dz-remove="" style="display: none;">
+                                            <i class="bi bi-x fs-3"></i>
+                                        </span>
+                                        <span class="dropzone-delete" data-dz-remove="">
+                                            <i class="bi bi-x fs-1"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="form-text fs-6 text-muted">Strictly CSV Format | Max file size is 1MB per file.</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--Upload Costumers Document Modal End-->
+
+{% endblock body %}
+
+{% block script %}
+<script>
+    jq(document).ready(function () {
+        jq('#uploadsTable').DataTable();
+    });
+</script>
+{% endblock script %}

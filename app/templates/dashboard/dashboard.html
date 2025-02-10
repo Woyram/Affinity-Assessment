@@ -1,0 +1,96 @@
+{% extends "base/base.html" %}
+{% block username %} {{ userdata["firstname"].capitalize() }} {{ userdata["lastname"].capitalize() }} {% endblock username %}
+{% block useremail %} {{ userdata["email"] }} {% endblock useremail %}
+{% block sessionname %} - {{ userdata["username"].capitalize() }} {% endblock sessionname %}
+{% block screenname %} {{ menu_item }} {% endblock screenname %}
+
+{% block body %}
+
+<div class="row gx-5 gx-xl-10">
+
+    <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
+        <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-end mb-5 mb-xl-10"
+             style="background: linear-gradient(45deg, #e75421, #f18807, #fabc34, #f18807, #e75421);">
+            <div class="card-header pt-5">
+                <div class="card-title d-flex flex-column">
+                    <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{ dashboardDetails["customers"] }}</span>
+                    <span class="text-white opacity-75 pt-1 fw-semibold fs-6">Total Customers</span>
+                </div>
+            </div>
+            <div class="card-body d-flex align-items-end pt-0">
+                <div class="d-flex align-items-center flex-column mt-3 w-100">
+                    <div class="d-flex justify-content-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2">
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
+        <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-end mb-5 mb-xl-10"
+             style="background: linear-gradient(45deg, #e75421, #f18807, #fabc34, #f18807, #e75421);">
+            <div class="card-header pt-5">
+                <div class="card-title d-flex flex-column">
+                    <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{ dashboardDetails["coupons"] }}</span>
+                    <span class="text-white opacity-75 pt-1 fw-semibold fs-6">Total Coupons</span>
+                </div>
+            </div>
+            <div class="card-body d-flex align-items-end pt-0">
+                <div class="d-flex align-items-center flex-column mt-3 w-100">
+                    <div class="d-flex justify-content-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2">
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
+        <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-end mb-5 mb-xl-10"
+             style="background: linear-gradient(45deg, #e75421, #f18807, #fabc34, #f18807, #e75421);">
+            <div class="card-header pt-5">
+                <div class="card-title d-flex flex-column">
+                    <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{ dashboardDetails["uploads"] }}</span>
+                    <span class="text-white opacity-75 pt-1 fw-semibold fs-6">Total Uploads</span>
+                </div>
+            </div>
+            <div class="card-body d-flex align-items-end pt-0">
+                <div class="d-flex align-items-center flex-column mt-3 w-100">
+                    <div class="d-flex justify-content-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2">
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-3 mb-md-5 mb-xl-10">
+        <div class="card card-flush bgi-no-repeat bgi-size-contain bgi-position-x-end mb-5 mb-xl-10"
+             style="background: linear-gradient(45deg, #e75421, #f18807, #fabc34, #f18807, #e75421);">
+            <div class="card-header pt-5">
+                <div class="card-title d-flex flex-column">
+                    <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">210,230</span>
+                    <span class="text-white opacity-75 pt-1 fw-semibold fs-6">Total Orders</span>
+                </div>
+            </div>
+            <div class="card-body d-flex align-items-end pt-0">
+                <div class="d-flex align-items-center flex-column mt-3 w-100">
+                    <div class="d-flex justify-content-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2">
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
+
+{% block script %}
+{% endblock script %}

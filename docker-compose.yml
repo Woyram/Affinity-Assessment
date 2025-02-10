@@ -1,0 +1,10 @@
+
+services:
+  flask:
+    build: .
+    container_name: affinity_assessment
+    ports:
+      - "80:8094"
+    volumes:
+      - ./customerFiles:/app/app/static/customerFiles
+    restart: always

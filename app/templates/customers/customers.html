@@ -1,0 +1,49 @@
+{% extends "base/base.html" %}
+{% block username %} {{ userdata["firstname"].capitalize() }} {{ userdata["lastname"].capitalize() }} {% endblock username %}
+{% block useremail %} {{ userdata["email"] }} {% endblock useremail %}
+{% block sessionname %} - {{ userdata["username"].capitalize() }} {% endblock sessionname %}
+{% block screenname %} {{ menu_item }} {% endblock screenname %}
+
+{% block body %}
+
+<div class="card mb-5 mb-xl-8">
+    <div class="card-header border-0 pt-5">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bold fs-3 mb-1">Customers</span>
+        </h3>
+        <div class="d-flex align-items-center position-relative my-1">
+        </div>
+    </div>
+    <div class="card-body py-3">
+        <div class="table-responsive">
+            <table id="customersTable" class="table align-middle gs-0 gy-4">
+                <thead>
+                <tr class="fw-bold text-muted bg-light">
+                    <th class="ps-4 min-w-100px rounded-start">Customer ID</th>
+                    <th class="min-w-120px">Name</th>
+                    <th class="min-w-120px">Order Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <td><a style="cursor: pointer;"><strong>{{ customer["customer_id"] }}</strong></a></td>
+                    <td>{{ customer["customer_name"] }}</td>
+                    <td>{{ customer["order_value"] }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
+
+{% block script %}
+<script>
+    jq(document).ready(function () {
+        jq('#customersTable').DataTable();
+    });
+</script>
+{% endblock script %}
